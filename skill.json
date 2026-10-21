@@ -1,0 +1,68 @@
+{
+  "name": "genpark-agentic-commerce-ach-nacha-return-code-reconciler-skill",
+  "version": "1.0.0",
+  "title": "NACHA ACH Micro-Deposit Settlement & Return Code Reconciler Skill",
+  "description": "NACHA ACH return code triage (R01-R85), micro-deposit verification timeout, settlement float projection, and ledger matching. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "ach-settlement",
+    "nacha",
+    "micro-deposits",
+    "payment-reconciliation",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "triage_nacha_return_code",
+      "description": "Triage NACHA return code (e.g. R01 Insufficient Funds, R07 Authorization Revoked) and formulate automated resolution route.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "nacha_code": {
+            "type": "string"
+          },
+          "days_since_settlement": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "nacha_code"
+        ]
+      }
+    },
+    {
+      "name": "reconcile_micro_deposit_verification",
+      "description": "Validate 2 random micro-deposit amounts submitted by user against ledger records within expiration window.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deposit_1_cents": {
+            "type": "integer"
+          },
+          "deposit_2_cents": {
+            "type": "integer"
+          },
+          "user_entry_1_cents": {
+            "type": "integer"
+          },
+          "user_entry_2_cents": {
+            "type": "integer"
+          },
+          "elapsed_hours": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "deposit_1_cents",
+          "deposit_2_cents",
+          "user_entry_1_cents",
+          "user_entry_2_cents"
+        ]
+      }
+    }
+  ]
+}
